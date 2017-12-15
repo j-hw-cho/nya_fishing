@@ -29,7 +29,7 @@ public class HoleController : MonoBehaviour {
 	private bool ExitState;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		inited = false;
 		amIActive = false;
 		isKoi = false;

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameScript : MonoBehaviour {
 	public bool isGameStarted;
 	private float timeLimit = 60.0f;
 	private float timeLeft;
-	public int score;
+	public static int score;
 	public GameObject[] holes;
 
 	public int index;
@@ -24,9 +25,14 @@ public class GameScript : MonoBehaviour {
 	public AudioClip biteClip;
 	public AudioClip missClip;
 
+	public float startTimer;
+	public GameObject StartPanel;
+	public Text startTimerText;
+
+
 	// Use this for initialization
-	void Start () {
-		isGameStarted = true;
+	void Awake () {
+		isGameStarted = false;
 		timeLeft = timeLimit;
 		score = 0;
 		holes = GameObject.FindGameObjectsWithTag ("hole");
@@ -37,11 +43,30 @@ public class GameScript : MonoBehaviour {
 		TimeText = GameObject.Find ("TimeText").GetComponent<Text> ();
 		ScoreText = GameObject.Find ("ScoreText").GetComponent<Text> ();
 		ScoreText.text = "0";
+
+		startTimer = 3.0f;
+
+		GameObject.FindGameObjectWithTag ("hand").GetComponent<HandScript> ().toggleAnimation (true);;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (isGameStarted) {
+		if (!isGameStarted) {
+			if (startTimer >= 1.0f) {
+				startTimerText.text = startTimer.ToString ("##");
+			} else {
+				startTimerText.text = "GO!";
+			}
+
+			startTimer -= Time.deltaTime;
+
+			if (startTimer <= 0.0f) {
+				StartPanel.SetActive (false);
+				isGameStarted = true;
+				GameObject.FindGameObjectWithTag ("hand").GetComponent<HandScript> ().toggleAnimation (false);
+
+			}
+		} else {
 			timeLeft -= Time.deltaTime;
 			TimeText.text = "Time Left: " + timeLeft.ToString ("##");
 
@@ -95,6 +120,7 @@ public class GameScript : MonoBehaviour {
 
 	private void EndGame() {
 		// TODO
+		SceneManager.LoadScene("EndScene");
 	}
 
 

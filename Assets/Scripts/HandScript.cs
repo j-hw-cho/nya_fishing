@@ -8,9 +8,10 @@ public class HandScript : MonoBehaviour {
 	private float waitTimeMax = 0.7f;
 	private GameObject catEye;
 	private int biteCount;
+	public Animator myAnimator;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		isUsed = true;	
 		waitTime = waitTimeMax;
 		catEye =  GameObject.FindGameObjectWithTag ("eye");
@@ -30,6 +31,13 @@ public class HandScript : MonoBehaviour {
 			}
 		}
 
+	}
+
+	public void toggleAnimation(bool stop) {
+		if (stop)
+			myAnimator.speed = 0.0f;
+		else
+			myAnimator.speed = 1.0f;
 	}
 
 	public void handHide() {
