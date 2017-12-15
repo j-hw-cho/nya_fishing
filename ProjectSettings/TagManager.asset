@@ -7,6 +7,7 @@ TagManager:
   - hole
   - hole_active
   - hand
+  - eye
   layers:
   - Default
   - TransparentFX

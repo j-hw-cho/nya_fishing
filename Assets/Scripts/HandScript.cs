@@ -6,11 +6,15 @@ public class HandScript : MonoBehaviour {
 	private bool isUsed;
 	private float waitTime;
 	private float waitTimeMax = 0.7f;
+	private GameObject catEye;
+	private int biteCount;
 
 	// Use this for initialization
 	void Start () {
 		isUsed = true;	
 		waitTime = waitTimeMax;
+		catEye =  GameObject.FindGameObjectWithTag ("eye");
+		biteCount = 0;
 	}
 	
 	// Update is called once per frame
@@ -37,5 +41,16 @@ public class HandScript : MonoBehaviour {
 			this.gameObject.GetComponent<SpriteRenderer> ().color = newColor;
 		}
 
+	}
+
+	public void changeEye(bool isNormalEye) {
+		if (isNormalEye) {
+			biteCount -= 1;
+			if (biteCount <= 0)
+				catEye.GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Cat/eye");
+		} else {
+			biteCount += 1;
+			catEye.GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Cat/eye_hurt");
+		}
 	}
 }

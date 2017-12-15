@@ -66,6 +66,9 @@ public class HoleController : MonoBehaviour {
 					Destroy (myChild);
 					fadeOut = false;
 					fadeOutFrame = 0;
+					if (!isKoi) {
+						GameObject.FindGameObjectWithTag ("hand").GetComponent<HandScript> ().changeEye (true);
+					}
 					ResetForNext ();
 				}
 
@@ -157,6 +160,7 @@ public class HoleController : MonoBehaviour {
 			if (isKoi) {
 				myChild.transform.localPosition = isLeftHalf ? new Vector3 (0.64f, 0.97f, 0f) : new Vector3 (0f, 1f, 0f);
 			} else {
+				GameObject.FindGameObjectWithTag ("hand").GetComponent<HandScript> ().changeEye (false);
 				myChild.transform.localPosition = isLeftHalf ? new Vector3 (2.77f, 2.31f, 0f) : new Vector3 (1.88f, 3.3f, 0f);
 			}
 			myChild.transform.localScale = new Vector3 (1f, 1f, 1f);

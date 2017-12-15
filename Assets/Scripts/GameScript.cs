@@ -62,6 +62,7 @@ public class GameScript : MonoBehaviour {
 		if (isPlus)
 			score += 10;
 		else
+			
 			score -= 5;
 	}
 
