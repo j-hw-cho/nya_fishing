@@ -11,7 +11,7 @@ public class HandScript : MonoBehaviour {
 	private int biteCount;
 	public Animator myAnimator;
 
-	private float eyeMoveUnit = 0.01f;
+	private float eyeMoveUnit = 0.02f;
 	private float eyeMoveSign = 1;
 
 	private bool isGameStarted;

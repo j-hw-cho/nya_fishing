@@ -31,6 +31,7 @@ public class GameScript : MonoBehaviour {
 	public Text startTimerText;
 	private string StartTimerStr;
 
+	private int combo;
 
 	// Use this for initialization
 	void Awake () {
@@ -47,6 +48,8 @@ public class GameScript : MonoBehaviour {
 		ScoreText.text = "0";
 
 		startTimer = 3.5f;
+
+		combo = 0;
 
 		GameObject.FindGameObjectWithTag ("hand").GetComponent<HandScript> ().toggleAnimation (true);;
 	}
@@ -111,10 +114,17 @@ public class GameScript : MonoBehaviour {
 			score += 10;
 			soundEffect.clip = catchClip;
 			soundEffect.Play ();
+			combo += 1;
+
+			if (combo % 10 == 0) {
+				score += 20;
+			}
+
 		} else {
 			score -= 10;
 			soundEffect.clip = biteClip;
 			soundEffect.Play ();
+			combo = 0;
 		}
 
 		ScoreText.text = score.ToString();
@@ -127,6 +137,7 @@ public class GameScript : MonoBehaviour {
 		soundEffect.Play ();
 		score -= 5;
 		ScoreText.text = score.ToString();
+		combo = 0;
 	}
 
 	private void EndGame() {
