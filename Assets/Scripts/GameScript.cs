@@ -18,6 +18,12 @@ public class GameScript : MonoBehaviour {
 	private Text ScoreText;
 	private Text TimeText;
 
+	public AudioSource soundEffect;
+
+	public AudioClip catchClip;
+	public AudioClip biteClip;
+	public AudioClip missClip;
+
 	// Use this for initialization
 	void Start () {
 		isGameStarted = true;
@@ -65,11 +71,15 @@ public class GameScript : MonoBehaviour {
 	}
 
 	public void ChangeScore (bool isPlus) {
-		if (isPlus)
+		if (isPlus) {
 			score += 10;
-		else
-			
+			soundEffect.clip = catchClip;
+			soundEffect.Play ();
+		} else {
 			score -= 10;
+			soundEffect.clip = biteClip;
+			soundEffect.Play ();
+		}
 
 		ScoreText.text = score.ToString();
 
@@ -77,6 +87,8 @@ public class GameScript : MonoBehaviour {
 		
 	public void MissedScore() {
 		// Missed koi 
+		soundEffect.clip = missClip;
+		soundEffect.Play ();
 		score -= 5;
 		ScoreText.text = score.ToString();
 	}
