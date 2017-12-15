@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameScript : MonoBehaviour {
 	public bool isGameStarted;
@@ -14,6 +15,8 @@ public class GameScript : MonoBehaviour {
 	float minWait;
 	float maxWait;
 
+	private Text ScoreText;
+	private Text TimeText;
 
 	// Use this for initialization
 	void Start () {
@@ -25,13 +28,16 @@ public class GameScript : MonoBehaviour {
 		minWait = 1.0f;
 		maxWait = 10.0f;
 
+		TimeText = GameObject.Find ("TimeText").GetComponent<Text> ();
+		ScoreText = GameObject.Find ("ScoreText").GetComponent<Text> ();
+		ScoreText.text = "0";
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (isGameStarted) {
 			timeLeft -= Time.deltaTime;
-
+			TimeText.text = "Time Left: " + timeLeft.ToString ("##");
 
 			if (timeLeft <= 0.0f) {
 				isGameStarted = false;
@@ -63,7 +69,16 @@ public class GameScript : MonoBehaviour {
 			score += 10;
 		else
 			
-			score -= 5;
+			score -= 10;
+
+		ScoreText.text = score.ToString();
+
+	}
+		
+	public void MissedScore() {
+		// Missed koi 
+		score -= 5;
+		ScoreText.text = score.ToString();
 	}
 
 	private void EndGame() {

@@ -83,6 +83,8 @@ public class HoleController : MonoBehaviour {
 								// End of Animation
 								Debug.Log ("Animation Done!");
 								DeactivateHole ();
+								// Mark Missed
+								GameObject.Find("camera").GetComponent<GameScript>().MissedScore();
 							}
 							ExitState = false;
 						}
