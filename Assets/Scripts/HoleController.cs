@@ -26,6 +26,8 @@ public class HoleController : MonoBehaviour {
 	private int frameNo;
 	private float alphaChangeUnit;
 
+	private bool ExitState;
+
 	// Use this for initialization
 	void Start () {
 		inited = false;
@@ -45,6 +47,7 @@ public class HoleController : MonoBehaviour {
 		fadeOutFrame = 0;
 		fadeOut = false;
 		alphaChangeUnit = 1f / (float)frameNo;
+		ExitState = false;
 	}
 	
 	// Update is called once per frame
@@ -64,6 +67,36 @@ public class HoleController : MonoBehaviour {
 					fadeOut = false;
 					fadeOutFrame = 0;
 					ResetForNext ();
+				}
+
+			} else if (amIActive) {
+				Animator am = this.gameObject.gameObject.transform.GetChild (0).gameObject.GetComponent<Animator> ();
+				if (am != null) {
+					if (isKoi) {
+						if (am.GetCurrentAnimatorStateInfo (0).IsName ("koi_exit")) {
+							ExitState = true;
+						} else {
+							if (ExitState) {
+								// End of Animation
+								Debug.Log ("Animation Done!");
+								DeactivateHole ();
+							}
+							ExitState = false;
+						}
+					} else {		// Piranha
+						if (am.GetCurrentAnimatorStateInfo (0).IsName ("piranah_exit")) {
+							ExitState = true;
+						} else {
+							if (ExitState) {
+								// End of Animation
+								Debug.Log ("Animation Done!");
+								DeactivateHole ();
+							}
+							ExitState = false;
+						}
+
+					}
+
 				}
 
 			} else {
@@ -113,6 +146,7 @@ public class HoleController : MonoBehaviour {
 
 	public void DeactivateHole(bool isCatched = false) {
 		GameObject activeHole = this.gameObject.transform.GetChild (0).gameObject;
+		ExitState = false;
 		if (activeHole != null)
 			Destroy (activeHole);
 		
