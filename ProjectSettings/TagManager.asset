@@ -49,3 +49,6 @@ TagManager:
   - name: hole
     uniqueID: 3029103979
     locked: 0
+  - name: fish
+    uniqueID: 3016899753
+    locked: 0
