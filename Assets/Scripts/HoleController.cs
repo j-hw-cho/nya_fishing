@@ -118,6 +118,7 @@ public class HoleController : MonoBehaviour {
 		if (amIActive) {
 		// TODO: Change the display
 			bool isPlus = isKoi;
+			GameObject.FindGameObjectWithTag ("hand").GetComponent<HandScript> ().moveEye (num);
 			GameObject.Find ("camera").GetComponent<GameScript> ().ChangeScore (isPlus);
 			GameObject.FindGameObjectWithTag ("hand").GetComponent<HandScript> ().handHide ();
 			DeactivateHole(true);

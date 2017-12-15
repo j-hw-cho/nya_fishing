@@ -40,7 +40,7 @@ public class GameScript : MonoBehaviour {
 		holes = GameObject.FindGameObjectsWithTag ("hole");
 		index = 0;
 		minWait = 1.0f;
-		maxWait = 5.0f;
+		maxWait = 6.0f;
 
 		TimeText = GameObject.Find ("TimeText").GetComponent<Text> ();
 		ScoreText = GameObject.Find ("ScoreText").GetComponent<Text> ();
