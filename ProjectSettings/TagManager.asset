@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - hole
+  - hole_active
   layers:
   - Default
   - TransparentFX
@@ -38,6 +40,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: cat
+    uniqueID: 4088943807
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: hole
+    uniqueID: 3029103979
     locked: 0
