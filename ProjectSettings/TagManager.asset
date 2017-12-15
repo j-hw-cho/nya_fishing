@@ -6,6 +6,7 @@ TagManager:
   tags:
   - hole
   - hole_active
+  - hand
   layers:
   - Default
   - TransparentFX

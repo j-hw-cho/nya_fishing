@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameScript.cs" />
+     <Compile Include="Assets\Scripts\HandScript.cs" />
      <Compile Include="Assets\Scripts\HoleController.cs" />
      <Compile Include="Assets\Scripts\TouchScript.cs" />
  <Reference Include="UnityEngine.UI">
