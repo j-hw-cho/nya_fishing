@@ -24,10 +24,12 @@ public class GameScript : MonoBehaviour {
 	public AudioClip catchClip;
 	public AudioClip biteClip;
 	public AudioClip missClip;
+	public AudioClip timerClip;
 
 	public float startTimer;
 	public GameObject StartPanel;
 	public Text startTimerText;
+	private string StartTimerStr;
 
 
 	// Use this for initialization
@@ -38,13 +40,13 @@ public class GameScript : MonoBehaviour {
 		holes = GameObject.FindGameObjectsWithTag ("hole");
 		index = 0;
 		minWait = 1.0f;
-		maxWait = 10.0f;
+		maxWait = 5.0f;
 
 		TimeText = GameObject.Find ("TimeText").GetComponent<Text> ();
 		ScoreText = GameObject.Find ("ScoreText").GetComponent<Text> ();
 		ScoreText.text = "0";
 
-		startTimer = 3.0f;
+		startTimer = 3.5f;
 
 		GameObject.FindGameObjectWithTag ("hand").GetComponent<HandScript> ().toggleAnimation (true);;
 	}
@@ -52,10 +54,19 @@ public class GameScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!isGameStarted) {
-			if (startTimer >= 1.0f) {
-				startTimerText.text = startTimer.ToString ("##");
+			if (startTimer > 1.0f) {
+				if (StartTimerStr != startTimer.ToString ("##")) {
+					soundEffect.clip = timerClip;
+					soundEffect.Play ();
+					StartTimerStr = startTimer.ToString ("##"); 
+					startTimerText.text = StartTimerStr;
+				}
 			} else {
-				startTimerText.text = "GO!";
+				if (StartTimerStr != "GO!") {
+					soundEffect.Play ();
+					startTimerText.text = "GO!";
+
+				}
 			}
 
 			startTimer -= Time.deltaTime;

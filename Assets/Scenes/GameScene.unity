@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.559}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -616,6 +616,7 @@ MonoBehaviour:
   catchClip: {fileID: 8300000, guid: f16e64adea5174e7f90d22098760d27d, type: 3}
   biteClip: {fileID: 8300000, guid: 14fdebc21f26d4823be8a892b83a23cd, type: 3}
   missClip: {fileID: 8300000, guid: f731a7c6f1e1d4474bc62c25cbdc1282, type: 3}
+  timerClip: {fileID: 8300000, guid: e38508625ebad4d5f8e4896f51157fdd, type: 3}
   startTimer: 0
   StartPanel: {fileID: 205663188}
   startTimerText: {fileID: 46917935}

@@ -35,8 +35,8 @@ public class HoleController : MonoBehaviour {
 		isKoi = false;
 
 		nextGenTimer = 0.0f;
-		timerMax = 10.0f;
-		timerMin = 3.0f;
+		timerMax = 8.0f;
+		timerMin = 2.0f;
 
 		KoiPrefab = Resources.Load ("Prefabs/koi") as GameObject;
 		PiranhaPrefab = Resources.Load ("Prefabs/piranha") as GameObject;
